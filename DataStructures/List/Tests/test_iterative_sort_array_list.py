@@ -22,7 +22,13 @@ def setup_tests():
 
 def sort_criteria_increasingly(element1, element2):
     is_sorted = False
-    if element1 < element2:
+    if element1 <= element2:
+        is_sorted = True
+    return is_sorted
+
+def sort_criteria_decreasingly(element1, element2):
+    is_sorted = False
+    if element1 >= element2:
         is_sorted = True
     return is_sorted
 
@@ -57,6 +63,10 @@ def test_selection_sort():
     lt.selection_sort(inverted_list, sort_criteria_increasingly)
     assert lt.size(inverted_list) == 15
 
+    # Decreasingly sort criteria
+
+    lt.selection_sort(back_up, sort_criteria_decreasingly)
+    assert lt.size(back_up) == 15
 
 @handle_not_implemented
 def test_insertion_sort():
@@ -84,7 +94,10 @@ def test_insertion_sort():
     lt.insertion_sort(inverted_list, sort_criteria_increasingly)
     assert lt.size(inverted_list) == 15
 
+    # Decreasingly sort criteria
 
+    lt.insertion_sort(back_up, sort_criteria_decreasingly)
+    assert lt.size(back_up) == 15
 
 @handle_not_implemented
 def test_shell_sort():
@@ -110,3 +123,8 @@ def test_shell_sort():
 
     lt.shell_sort(inverted_list, sort_criteria_increasingly)
     assert lt.size(inverted_list) == 15
+
+    # Decreasingly sort criteria
+
+    lt.shell_sort(back_up, sort_criteria_decreasingly)
+    assert lt.size(back_up) == 15

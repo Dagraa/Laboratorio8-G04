@@ -22,13 +22,20 @@ def setup_tests():
 
 def sort_criteria_increasingly(element1, element2):
     is_sorted = False
-    if element1 < element2:
+    if element1 <= element2:
+        is_sorted = True
+    return is_sorted
+
+def sort_criteria_decreasingly(element1, element2):
+    is_sorted = False
+    if element1 >= element2:
         is_sorted = True
     return is_sorted
 
 @handle_not_implemented
 def test_merge_sort():
     empty_list, one_element_list, random_lista, inverted_list = setup_tests()
+    back_up = random_lista
 
     # Empty list
 
@@ -50,11 +57,16 @@ def test_merge_sort():
     lt.merge_sort(inverted_list, sort_criteria_increasingly)
     assert lt.size(inverted_list) == 15
 
+    # Decreasingly sort criteria
+
+    lt.merge_sort(back_up, sort_criteria_decreasingly)
+    assert lt.size(back_up) == 15
 
 @handle_not_implemented
 def test_quick_sort():
     empty_list, one_element_list, random_lista, inverted_list = setup_tests()
-    
+    back_up = random_lista
+
     # Empty list
 
     lt.quick_sort(empty_list, sort_criteria_increasingly)
@@ -75,4 +87,9 @@ def test_quick_sort():
 
     lt.quick_sort(inverted_list, sort_criteria_increasingly)
     assert lt.size(inverted_list) == 15
+
+    # Decreasingly sort criteria
+
+    lt.quick_sort(back_up, sort_criteria_decreasingly)
+    assert lt.size(back_up) == 15
 
