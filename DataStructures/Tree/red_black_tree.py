@@ -1,4 +1,5 @@
 from DataStructures.Tree import rbt_node
+from DataStructures.List import array_list as al
 
 
 def default_compare(key, element):
@@ -138,3 +139,17 @@ def contains(my_map, key):
     if state == None:
         return False
     return True
+
+
+def key_set(my_map):
+    keys = al.new_list()
+    keys = key_set_tree(my_map["root"], keys)
+    return keys
+
+
+def key_set_tree(node, key_list):
+    if node is not None:
+        key_set_tree(node["left"], key_list)
+        al.add_last(key_list, node["key"])
+        key_set_tree(node["right"], key_list)
+    return key_list
